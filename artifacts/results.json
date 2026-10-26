@@ -1,46 +1,46 @@
 {
   "meta": {
     "version": "0.1.0",
-    "trained_at": "2026-10-26 08:37 UTC",
+    "trained_at": "2026-10-26 14:09 UTC",
     "rows_raw": 70000,
     "rows_clean": 67936,
     "rows_train": 54348,
     "rows_test": 13588,
     "seed": 42,
-    "budget_seconds": 120
+    "budget_seconds": 900
   },
   "tuning": [
     {
       "method": "baseline",
       "cv_f1": 0.7050604605465118,
       "test_f1": 0.6986931986931987,
-      "seconds": 8.0
+      "seconds": 22.9
     },
     {
       "method": "grid",
       "cv_f1": 0.7222561226330138,
       "test_f1": 0.712791141657121,
-      "seconds": 99.1
+      "seconds": 249.9
     },
     {
       "method": "random",
       "cv_f1": 0.7243640831037605,
       "test_f1": 0.7150076569678407,
-      "seconds": 395.6
+      "seconds": 939.7
     },
     {
       "method": "optuna",
       "cv_f1": 0.7247066821374879,
       "test_f1": 0.7140012254901961,
-      "seconds": 746.3
+      "seconds": 1125.0
     }
   ],
   "automl": [
     {
       "tool": "FLAML",
-      "test_f1": 0.7147406733393995,
-      "seconds": 120.1,
-      "winner": "rf",
+      "test_f1": 0.7171472595201409,
+      "seconds": 899.8,
+      "winner": "lgbm",
       "models_tried": [
         "lgbm",
         "rf",
@@ -51,10 +51,14 @@
         "lrl1"
       ],
       "best_config": {
-        "n_estimators": 8,
-        "max_features": 0.2765545727638131,
-        "max_leaves": 124,
-        "criterion": "gini"
+        "n_estimators": 4,
+        "num_leaves": 10,
+        "min_child_samples": 5,
+        "learning_rate": 0.04821360633862168,
+        "log_max_bin": 6,
+        "colsample_bytree": 1.0,
+        "reg_alpha": 0.0009765625,
+        "reg_lambda": 1.936123295900285
       },
       "notes": "Searches learners (LightGBM, XGBoost, RF, ExtraTrees, ...) and hyperparameters; light preprocessing only. Check the log for what it applied in your run."
     }
@@ -63,13 +67,13 @@
     {
       "tool": "Manual (optuna)",
       "test_f1": 0.7140012254901961,
-      "seconds": 746.3,
+      "seconds": 1125.0,
       "interpretability": "High: single forest, exact SHAP"
     },
     {
       "tool": "FLAML",
-      "test_f1": 0.7147406733393995,
-      "seconds": 120.1,
+      "test_f1": 0.7171472595201409,
+      "seconds": 899.8,
       "interpretability": "Medium: tree ensemble, SHAP possible"
     }
   ],
@@ -79,9 +83,9 @@
     "gap": 0.010705456647291833
   },
   "canary": {
-    "f1_with_leak": 0.9709426987060998,
-    "f1_leak_shuffled": 0.5030665779945319,
-    "canary_importance_share": 0.9450017711645979,
+    "f1_with_leak": 0.9707991424558291,
+    "f1_leak_shuffled": 0.5038032641606971,
+    "canary_importance_share": 0.9472708462434033,
     "canary_rank": 1,
     "exploited": true
   },

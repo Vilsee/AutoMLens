@@ -7,3 +7,4 @@ web/.next/
 web/.env.local
 .vercel/
 artifacts/ckpt_*
+*.log

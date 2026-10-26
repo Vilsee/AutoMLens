@@ -2,7 +2,7 @@
 
 ## Model details
 - Model: scikit-learn RandomForest, tuned with optuna
-- Version: 0.1.0 | Trained: 2026-10-26 08:37 UTC
+- Version: 0.1.0 | Trained: 2026-10-26 14:09 UTC
 - Task: binary classification of cardiovascular disease (`cardio`)
 
 ## Data
@@ -22,7 +22,7 @@
 | 2 | 0.462 | 0.694 | 0.239 |
 
 ## Evaluation notes
-- Leakage canary: F1 0.971 with a leaky feature vs 0.503 once it is shuffled. AutoML exploited it: True.
+- Leakage canary: F1 0.971 with a leaky feature vs 0.504 once it is shuffled. AutoML exploited it: True.
 - Most influential features (mean |SHAP|): ap_hi, age_years, ap_lo, cholesterol, bmi
 
 ## Intended use
