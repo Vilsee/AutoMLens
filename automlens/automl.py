@@ -37,7 +37,7 @@ def run_autogluon(tr, te, label, budget, path=None):
                 models_tried=lb['model'].tolist(),
                 leaderboard=lb[['model', 'score_test', 'score_val', 'fit_time']].head(10).to_dict('records'),
                 features_used=str(p.features()),
-                feature_types=str(p.feature_metadata.get_type_map_raw()),
+                feature_types=str(getattr(p.feature_metadata, 'type_map_raw', 'n/a')),
                 decision_threshold=float(p.decision_threshold),
                 notes='medium_quality preset (single level, no stacking) to fit in laptop memory; '
                       'automatic type-aware feature generation (4 binary columns converted to boolean, '

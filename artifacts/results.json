@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "0.1.0",
-    "trained_at": "2026-10-26 14:09 UTC",
+    "trained_at": "2026-10-26 19:08 UTC",
     "rows_raw": 70000,
     "rows_clean": 67936,
     "rows_train": 54348,
@@ -61,6 +61,76 @@
         "reg_lambda": 1.936123295900285
       },
       "notes": "Searches learners (LightGBM, XGBoost, RF, ExtraTrees, ...) and hyperparameters; light preprocessing only. Check the log for what it applied in your run."
+    },
+    {
+      "tool": "AutoGluon",
+      "test_f1": 0.7280547133892689,
+      "seconds": 93.1,
+      "winner": "WeightedEnsemble_L2",
+      "models_tried": [
+        "LightGBM",
+        "WeightedEnsemble_L2",
+        "LightGBMXT",
+        "LightGBMLarge",
+        "ExtraTreesEntr",
+        "ExtraTreesGini",
+        "RandomForestGini",
+        "RandomForestEntr"
+      ],
+      "leaderboard": [
+        {
+          "model": "LightGBM",
+          "score_test": 0.73047625356031,
+          "score_val": 0.7179700499168054,
+          "fit_time": 0.6636011600494385
+        },
+        {
+          "model": "WeightedEnsemble_L2",
+          "score_test": 0.7280547133892689,
+          "score_val": 0.7194004995836802,
+          "fit_time": 3.7540948390960693
+        },
+        {
+          "model": "LightGBMXT",
+          "score_test": 0.7276474769012082,
+          "score_val": 0.7192036499377852,
+          "fit_time": 0.9823355674743652
+        },
+        {
+          "model": "LightGBMLarge",
+          "score_test": 0.7270408163265306,
+          "score_val": 0.719232373800584,
+          "fit_time": 1.8724720478057861
+        },
+        {
+          "model": "ExtraTreesEntr",
+          "score_test": 0.7128165118093481,
+          "score_val": 0.7036580353473079,
+          "fit_time": 15.388519525527954
+        },
+        {
+          "model": "ExtraTreesGini",
+          "score_test": 0.7121287304175232,
+          "score_val": 0.7035670356703567,
+          "fit_time": 14.498585224151611
+        },
+        {
+          "model": "RandomForestGini",
+          "score_test": 0.7096409386485723,
+          "score_val": 0.7015409570154095,
+          "fit_time": 14.644063711166382
+        },
+        {
+          "model": "RandomForestEntr",
+          "score_test": 0.7062823146115164,
+          "score_val": 0.7019975540154912,
+          "fit_time": 22.13999080657959
+        }
+      ],
+      "features_used": "['gender', 'height', 'weight', 'ap_hi', 'ap_lo', 'cholesterol', 'gluc', 'smoke', 'alco', 'active', 'age_years', 'bmi']",
+      "feature_types": "{'gender': 'int', 'height': 'int', 'weight': 'float', 'ap_hi': 'int', 'ap_lo': 'int', 'cholesterol': 'int', 'gluc': 'int', 'smoke': 'int', 'alco': 'int', 'active': 'int', 'age_years': 'float', 'bmi': 'float'}",
+      "decision_threshold": 0.447,
+      "notes": "medium_quality preset (single level, no stacking) to fit in laptop memory; automatic type-aware feature generation (4 binary columns converted to boolean, no features created or dropped); neural nets, CatBoost and XGBoost excluded; decision threshold calibrated for F1 on validation data."
     }
   ],
   "comparison": [
@@ -75,6 +145,12 @@
       "test_f1": 0.7171472595201409,
       "seconds": 899.8,
       "interpretability": "Medium: tree ensemble, SHAP possible"
+    },
+    {
+      "tool": "AutoGluon",
+      "test_f1": 0.7280547133892689,
+      "seconds": 93.1,
+      "interpretability": "Low: ensemble of several models, hard to explain"
     }
   ],
   "overfitting": {
@@ -83,10 +159,10 @@
     "gap": 0.010705456647291833
   },
   "canary": {
-    "f1_with_leak": 0.9707991424558291,
-    "f1_leak_shuffled": 0.5038032641606971,
-    "canary_importance_share": 0.9472708462434033,
-    "canary_rank": 1,
+    "f1_with_leak": 0.9703380427546416,
+    "f1_leak_shuffled": 0.5045619761145316,
+    "canary_importance_share": 0.005076142131979695,
+    "canary_rank": 9,
     "exploited": true
   },
   "bias": {
