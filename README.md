@@ -30,7 +30,6 @@
 
 > The API runs on Render's free tier and goes to sleep when idle. The first request after a pause can take up to a minute. Open the health link a couple of minutes before a demo.
 
-![Results page](docs/screenshots/results.png)
 
 ---
 
@@ -386,9 +385,7 @@ Inputs are validated (for example `ap_hi` must be 70 to 250), and invalid input 
 | **Predict** (`/predict`) | A form for one patient, the estimated probability and what pushed it up or down |
 | **Model card** (`/model-card`) | The model card text from the API |
 
-![Predict page](docs/screenshots/predict.png)
 
-![Model card page](docs/screenshots/model-card.png)
 
 The interface is built with Next.js 14 and uses a Spline 3D scene as a fixed background, with frosted panels so the text stays readable. The scene is hidden for visitors who ask their system for reduced motion. 3D scenes made with [Spline](https://spline.design).
 
@@ -433,7 +430,6 @@ AutoMLens/
 |-- web/                        # Next.js 14 web app
 |-- web-overlay/                # UI source files copied into web/ by setup-web.ps1
 |-- scripts/fill_readme.py      # fills section 6 from results.json
-|-- docs/screenshots/           # images used in this README
 |-- tests/test_data.py
 |-- Dockerfile
 |-- render.yaml
