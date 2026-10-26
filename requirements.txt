@@ -1,0 +1,13 @@
+pandas
+numpy
+scikit-learn
+optuna
+flaml[automl]
+shap
+fairlearn
+matplotlib
+joblib
+fastapi
+uvicorn
+pytest
+kaggle

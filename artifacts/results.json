@@ -1,0 +1,172 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "trained_at": "2026-10-26 08:37 UTC",
+    "rows_raw": 70000,
+    "rows_clean": 67936,
+    "rows_train": 54348,
+    "rows_test": 13588,
+    "seed": 42,
+    "budget_seconds": 120
+  },
+  "tuning": [
+    {
+      "method": "baseline",
+      "cv_f1": 0.7050604605465118,
+      "test_f1": 0.6986931986931987,
+      "seconds": 8.0
+    },
+    {
+      "method": "grid",
+      "cv_f1": 0.7222561226330138,
+      "test_f1": 0.712791141657121,
+      "seconds": 99.1
+    },
+    {
+      "method": "random",
+      "cv_f1": 0.7243640831037605,
+      "test_f1": 0.7150076569678407,
+      "seconds": 395.6
+    },
+    {
+      "method": "optuna",
+      "cv_f1": 0.7247066821374879,
+      "test_f1": 0.7140012254901961,
+      "seconds": 746.3
+    }
+  ],
+  "automl": [
+    {
+      "tool": "FLAML",
+      "test_f1": 0.7147406733393995,
+      "seconds": 120.1,
+      "winner": "rf",
+      "models_tried": [
+        "lgbm",
+        "rf",
+        "xgboost",
+        "extra_tree",
+        "xgb_limitdepth",
+        "sgd",
+        "lrl1"
+      ],
+      "best_config": {
+        "n_estimators": 8,
+        "max_features": 0.2765545727638131,
+        "max_leaves": 124,
+        "criterion": "gini"
+      },
+      "notes": "Searches learners (LightGBM, XGBoost, RF, ExtraTrees, ...) and hyperparameters; light preprocessing only. Check the log for what it applied in your run."
+    }
+  ],
+  "comparison": [
+    {
+      "tool": "Manual (optuna)",
+      "test_f1": 0.7140012254901961,
+      "seconds": 746.3,
+      "interpretability": "High: single forest, exact SHAP"
+    },
+    {
+      "tool": "FLAML",
+      "test_f1": 0.7147406733393995,
+      "seconds": 120.1,
+      "interpretability": "Medium: tree ensemble, SHAP possible"
+    }
+  ],
+  "overfitting": {
+    "cv_f1": 0.7247066821374879,
+    "test_f1": 0.7140012254901961,
+    "gap": 0.010705456647291833
+  },
+  "canary": {
+    "f1_with_leak": 0.9709426987060998,
+    "f1_leak_shuffled": 0.5030665779945319,
+    "canary_importance_share": 0.9450017711645979,
+    "canary_rank": 1,
+    "exploited": true
+  },
+  "bias": {
+    "by_group": {
+      "1": {
+        "selection_rate": 0.46454347577042043,
+        "tpr": 0.6875428571428571,
+        "fpr": 0.24046853468075333
+      },
+      "2": {
+        "selection_rate": 0.4618234204568841,
+        "tpr": 0.6939546599496221,
+        "fpr": 0.23859507468712152
+      }
+    },
+    "max_gap": {
+      "selection_rate": 0.002720055313536307,
+      "tpr": 0.00641180280676501,
+      "fpr": 0.0018734599936318097
+    }
+  },
+  "balance": {
+    "positive_share": 0.4972768487988695
+  },
+  "shap": [
+    {
+      "feature": "ap_hi",
+      "importance": 0.1464586510422682
+    },
+    {
+      "feature": "age_years",
+      "importance": 0.055614675042597386
+    },
+    {
+      "feature": "ap_lo",
+      "importance": 0.04971936448142255
+    },
+    {
+      "feature": "cholesterol",
+      "importance": 0.046694469280089926
+    },
+    {
+      "feature": "bmi",
+      "importance": 0.017146478809043117
+    },
+    {
+      "feature": "weight",
+      "importance": 0.01448577232805054
+    },
+    {
+      "feature": "active",
+      "importance": 0.009217132273066909
+    },
+    {
+      "feature": "gluc",
+      "importance": 0.004531229919908586
+    },
+    {
+      "feature": "height",
+      "importance": 0.004116967659267094
+    },
+    {
+      "feature": "smoke",
+      "importance": 0.003719671699571387
+    },
+    {
+      "feature": "gender",
+      "importance": 0.002221322976009571
+    },
+    {
+      "feature": "alco",
+      "importance": 0.002090175369671555
+    }
+  ],
+  "limitations": [
+    "Single public dataset with self-reported features; no external validation.",
+    "No calibration analysis; probabilities are not clinical risk scores.",
+    "Gender is binary in the source data; other groups and intersections were not audited.",
+    "Associations are observational, not causal.",
+    "AutoML budgets and seeds were fixed, so rankings may change with more time or other hardware."
+  ],
+  "export": {
+    "method": "optuna",
+    "cv_f1": 0.7247066821374879,
+    "test_f1": 0.7140012254901961
+  }
+}
